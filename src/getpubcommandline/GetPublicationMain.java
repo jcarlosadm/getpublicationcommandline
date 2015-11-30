@@ -3,7 +3,7 @@ package getpubcommandline;
 import java.io.File;
 import java.util.Collection;
 
-import getpubcommandline.plugin.SitePlugin;
+import getpubcommandline.plugin.CommandLineSitePlugin;
 import getpubcommandline.ui.commands.ContextCommand;
 import getpubcommandline.ui.commands.implementations.SiteChooserCommand;
 import getpublication.folders.UserFolder;
@@ -18,12 +18,12 @@ public class GetPublicationMain {
         pluginManager.addPluginsFrom(
                 new File(UserFolder.getPathToPluginFolder()).toURI());
 
-        Collection<SitePlugin> plugins = new PluginManagerUtil(pluginManager)
-                .getPlugins(SitePlugin.class);
+        Collection<CommandLineSitePlugin> plugins = new PluginManagerUtil(pluginManager)
+                .getPlugins(CommandLineSitePlugin.class);
 
         ContextCommand contextCommand = new ContextCommand();
         SiteChooserCommand command = new SiteChooserCommand();
-        for (SitePlugin sitePlugin : plugins) {
+        for (CommandLineSitePlugin sitePlugin : plugins) {
             command.addSiteCommand(sitePlugin.getCommand());
         }
 
