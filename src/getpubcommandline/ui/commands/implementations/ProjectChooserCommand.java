@@ -30,12 +30,12 @@ public class ProjectChooserCommand implements Command {
             return;
         }
         
-        ProjectBuilder projectBuilder = new ProjectBuilder();
+        ProjectBuilder projectBuilder = context.getProjectBuilder();
         projectBuilder.setName(selectedProject);
         projectBuilder.setUrlPart(jsonPublication.getProjectProperty(selectedProject, 
                 PropertiesName.NAME_IN_URL));
         projectBuilder.setAnonymousMode(context.isAnonymousMode());
-        Project project = projectBuilder.build(context.getSiteName());
+        Project project = projectBuilder.build();
         
         context.setProject(project);
         System.out.println("project "+project.getName()+" selected");

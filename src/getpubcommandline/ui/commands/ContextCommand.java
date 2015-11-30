@@ -3,7 +3,7 @@ package getpubcommandline.ui.commands;
 import getpublication.db.json.publication.JsonPublication;
 import getpublication.folders.DownloadFolder;
 import getpublication.project.Project;
-import getpublication.project.SiteName;
+import getpublication.project.ProjectBuilder;
 
 public class ContextCommand {
     private DownloadFolder downloadFolder = new DownloadFolder();
@@ -14,14 +14,14 @@ public class ContextCommand {
     
     private boolean anonymousMode = false;
     
-    private SiteName siteName = null;
+    private ProjectBuilder projectBuilder = null;
 
-    public SiteName getSiteName() {
-        return this.siteName;
+    public ProjectBuilder getProjectBuilder() {
+        return this.projectBuilder;
     }
 
-    public void setSiteName(SiteName siteName) {
-        this.siteName = siteName;
+    public void setProjectBuilder(ProjectBuilder builder) {
+        this.projectBuilder = builder;
     }
 
     public boolean isAnonymousMode() {
