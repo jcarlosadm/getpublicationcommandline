@@ -52,7 +52,7 @@ public class ChapterChooserCommand implements Command {
 
     @Override
     public String getCommandName() {
-        return "select chapter for download";
+        return "select a chapter for download";
     }
 
 }
