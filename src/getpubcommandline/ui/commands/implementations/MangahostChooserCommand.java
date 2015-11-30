@@ -20,6 +20,7 @@ public class MangahostChooserCommand implements Command{
         Command addProject = new AddProjectCommand();
         Command removeProject = new RemoveProjectCommand();
         Command selectProject = new ProjectChooserCommand();
+        Command showChapters = new ShowChaptersCommand();
         Command chapterChooser = new ChapterChooserCommand();
         Command exitCommand = new ExitCommand();
         
@@ -34,11 +35,13 @@ public class MangahostChooserCommand implements Command{
         while (!exit) {
             if (context.getProject() != null) {
                 commandChooser.removeCommand(exitCommand);
+                commandChooser.addCommand(showChapters);
                 commandChooser.addCommand(chapterChooser);
                 commandChooser.addCommand(exitCommand);
             } else {
                 commandChooser.removeCommand(exitCommand);
                 commandChooser.removeCommand(chapterChooser);
+                commandChooser.removeCommand(showChapters);
                 commandChooser.addCommand(exitCommand);
             }
             

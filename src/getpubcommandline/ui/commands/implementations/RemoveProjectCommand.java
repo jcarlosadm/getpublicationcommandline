@@ -19,7 +19,7 @@ public class RemoveProjectCommand implements Command {
             stringChooser.addString(projectName);
         }
 
-        String selectedProject = stringChooser.runWithIndex();
+        String selectedProject = stringChooser.run();
         if (selectedProject != null && !selectedProject.equals("")) {
             jsonPublication.removeProject(selectedProject);
 

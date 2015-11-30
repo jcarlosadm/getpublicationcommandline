@@ -23,38 +23,7 @@ public class StringChooser {
         this.title = title;
     }
     
-    public String runSideBySide() {
-        boolean exit = false;
-        String choice = "";
-        
-        while (!exit) {
-            if (!this.title.equals("")) {
-                System.out.println(this.title);
-            }
-            
-            for (String string : stringList) {
-                System.out.print("    " + string + "    ");
-            }
-            System.out.println("    _exit_    ");
-            
-            choice = UserInput.getInput();
-            
-            if (this.stringList.contains(choice)) {
-                System.out.println("\n"+choice+" selected");
-                exit = true;
-            } else if (choice.equals("_exit_")){
-                choice = "";
-                System.out.println("\nexit selected");
-                exit = true;
-            } else {
-                System.out.println("error choice. try again\n");
-            }
-        }
-        
-        return choice;
-    }
-    
-    public String runWithIndex() {
+    public String run() {
         String selectedString = "";
         boolean exit = false;
         

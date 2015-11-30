@@ -23,7 +23,7 @@ public class ProjectChooserCommand implements Command {
         for (String projectName : jsonPublication.getProjects()) {
             stringChooser.addString(projectName);
         }
-        String selectedProject = stringChooser.runWithIndex();
+        String selectedProject = stringChooser.run();
         
         if (selectedProject == null || selectedProject.equals("")) {
             System.out.println("project not selected");
@@ -38,7 +38,7 @@ public class ProjectChooserCommand implements Command {
         Project project = projectBuilder.build(context.getSiteName());
         
         context.setProject(project);
-        System.out.println("project selected");
+        System.out.println("project "+project.getName()+" selected");
     }
 
     @Override
