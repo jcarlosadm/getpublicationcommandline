@@ -28,7 +28,8 @@ public class ChapterArrayChooserCommand implements Command {
             return;
         }
 
-        List<String> selectedChapters = new ArrayList<>(Arrays.asList(stringUser.split(",")));
+        List<String> selectedChapters = new ArrayList<>(
+                Arrays.asList(stringUser.split(",")));
 
         for (Iterator<String> selectedChapterIterator = selectedChapters
                 .iterator(); selectedChapterIterator.hasNext();) {
