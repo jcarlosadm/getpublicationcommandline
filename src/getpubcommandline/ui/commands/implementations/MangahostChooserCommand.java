@@ -28,6 +28,7 @@ public class MangahostChooserCommand implements Command {
         tempCommands.add(new ShowChaptersCommand());
         tempCommands.add(new ChapterChooserCommand());
         tempCommands.add(new ChapterArrayChooserCommand());
+        tempCommands.add(new ChapterRangeChooserCommand());
 
         Command exitCommand = new ExitCommand();
 
