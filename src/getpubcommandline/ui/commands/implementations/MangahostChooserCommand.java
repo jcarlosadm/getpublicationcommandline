@@ -9,7 +9,7 @@ import getpublication.db.json.publication.mangahost.JsonMangahost;
 import getpublication.project.SiteName;
 
 public class MangahostChooserCommand implements Command{
-
+    
     @Override
     public void action(ContextCommand context) {
         context.setSiteName(SiteName.MANGAHOST);
@@ -22,6 +22,7 @@ public class MangahostChooserCommand implements Command{
         Command selectProject = new ProjectChooserCommand();
         Command showChapters = new ShowChaptersCommand();
         Command chapterChooser = new ChapterChooserCommand();
+        Command chapterArrayChooser = new ChapterArrayChooserCommand();
         Command exitCommand = new ExitCommand();
         
         CommandChooser commandChooser = new CommandChooser();
@@ -37,9 +38,11 @@ public class MangahostChooserCommand implements Command{
                 commandChooser.removeCommand(exitCommand);
                 commandChooser.addCommand(showChapters);
                 commandChooser.addCommand(chapterChooser);
+                commandChooser.addCommand(chapterArrayChooser);
                 commandChooser.addCommand(exitCommand);
             } else {
                 commandChooser.removeCommand(exitCommand);
+                commandChooser.removeCommand(chapterArrayChooser);
                 commandChooser.removeCommand(chapterChooser);
                 commandChooser.removeCommand(showChapters);
                 commandChooser.addCommand(exitCommand);
