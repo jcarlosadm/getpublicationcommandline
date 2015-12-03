@@ -41,13 +41,13 @@ public class ChapterRangeChooserCommand implements Command {
         int index2 = context.getProject().getAllChapterNames()
                 .indexOf(selectedChapter2);
 
-        if (index1 > index2) {
+        if (index1 < index2) {
             int temp = index1;
             index1 = index2;
             index2 = temp;
         }
 
-        for (; index1 <= index2; index1++) {
+        for (; index1 >= index2; index1--) {
             String selectedChapter = context.getProject().getAllChapterNames()
                     .get(index1);
             context.getProject().downloadChapter(selectedChapter,
