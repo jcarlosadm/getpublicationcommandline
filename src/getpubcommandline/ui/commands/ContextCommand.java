@@ -1,7 +1,7 @@
 package getpubcommandline.ui.commands;
 
-import getpublication.db.json.publication.JsonPublication;
 import getpublication.folders.DownloadFolder;
+import getpublication.json.publication.JsonPublication;
 import getpublication.project.Project;
 import getpublication.project.ProjectBuilder;
 

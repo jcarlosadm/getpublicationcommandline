@@ -2,8 +2,8 @@ package getpubcommandline.ui.commands.implementations;
 
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
-import getpublication.db.json.publication.JsonPublication;
-import getpublication.db.json.publication.PropertiesName;
+import getpublication.json.publication.JsonPublication;
+import getpublication.json.publication.PropertiesName;
 import getpublication.util.UserInput;
 
 public class AddProjectCommand implements Command {

@@ -2,8 +2,8 @@ package getpubcommandline.ui.commands.implementations;
 
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
-import getpublication.db.json.basicconfig.JsonConfig;
 import getpublication.folders.DownloadFolder;
+import getpublication.json.basicconfig.JsonConfig;
 import getpublication.util.folder.chooser.DialogFolderChooser;
 
 public class DownloadFolderChooserCommand implements Command {

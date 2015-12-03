@@ -3,7 +3,7 @@ package getpubcommandline.ui.commands.implementations;
 import getpubcommandline.ui.StringChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
-import getpublication.db.json.publication.JsonPublication;
+import getpublication.json.publication.JsonPublication;
 
 public class RemoveProjectCommand implements Command {
 

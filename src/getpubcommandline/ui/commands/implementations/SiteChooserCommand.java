@@ -6,7 +6,7 @@ import java.util.List;
 import getpubcommandline.ui.CommandChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
-import getpublication.db.json.basicconfig.JsonConfig;
+import getpublication.json.basicconfig.JsonConfig;
 
 public class SiteChooserCommand implements Command {
 
