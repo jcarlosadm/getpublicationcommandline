@@ -2,7 +2,6 @@ package getpubcommandline.ui.commands.implementations;
 
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
-import getpublication.db.json.JsonBasicOperations;
 import getpublication.db.json.publication.JsonPublication;
 import getpublication.db.json.publication.PropertiesName;
 import getpublication.util.UserInput;
@@ -19,13 +18,13 @@ public class AddProjectCommand implements Command {
 
         JsonPublication jsonPublication = context.getJsonPublication();
 
-        ((JsonBasicOperations) jsonPublication).load();
+        jsonPublication.load();
 
         jsonPublication.addProject(projectName);
         jsonPublication.addProjectProperty(projectName,
                 PropertiesName.NAME_IN_URL, urlPart);
 
-        ((JsonBasicOperations) jsonPublication).save();
+        jsonPublication.save();
         System.out.println("project "+projectName+" added");
     }
 
