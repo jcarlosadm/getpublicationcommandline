@@ -6,6 +6,8 @@ import getpublication.util.UserInput;
 
 public class ChapterRangeChooserCommand implements Command {
 
+    private static final int DOWNLOAD_TENTATIVES = 3;
+
     @Override
     public void action(ContextCommand context) {
         if (context.getProject() == null) {
@@ -50,8 +52,15 @@ public class ChapterRangeChooserCommand implements Command {
         for (; index1 >= index2; index1--) {
             String selectedChapter = context.getProject().getAllChapterNames()
                     .get(index1);
-            context.getProject().downloadChapter(selectedChapter,
-                    context.getDownloadFolder());
+            
+            int tryCounts = 0;
+            while (tryCounts < DOWNLOAD_TENTATIVES) {
+                if (context.getProject().downloadChapter(selectedChapter,
+                        context.getDownloadFolder()) == true) {
+                    break;
+                }
+                tryCounts++;
+            }
         }
     }
 
