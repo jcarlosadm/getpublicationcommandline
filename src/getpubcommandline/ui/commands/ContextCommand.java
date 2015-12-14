@@ -2,6 +2,7 @@ package getpubcommandline.ui.commands;
 
 import getpublication.folders.DownloadFolder;
 import getpublication.json.publication.JsonPublication;
+import getpublication.parser.HtmlSearchParser;
 import getpublication.project.Project;
 import getpublication.project.ProjectBuilder;
 
@@ -15,6 +16,16 @@ public class ContextCommand {
     private boolean anonymousMode = false;
     
     private ProjectBuilder projectBuilder = null;
+    
+    private HtmlSearchParser htmlSearchParser = null;
+
+    public HtmlSearchParser getHtmlSearchParser() {
+        return this.htmlSearchParser;
+    }
+
+    public void setHtmlSearchParser(HtmlSearchParser htmlSearchParser) {
+        this.htmlSearchParser = htmlSearchParser;
+    }
 
     public ProjectBuilder getProjectBuilder() {
         return this.projectBuilder;

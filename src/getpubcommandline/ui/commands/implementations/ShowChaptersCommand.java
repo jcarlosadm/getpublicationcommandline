@@ -21,6 +21,9 @@ public class ShowChaptersCommand implements Command {
 
         List<String> chapterNameList = context.getProject()
                 .getAllChapterNames();
+        if (chapterNameList == null) {
+            return;
+        }
 
         if (lastProject.equals("")
                 || !context.getProject().getName().equals(this.lastProject)) {

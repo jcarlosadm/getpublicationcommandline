@@ -1,5 +1,7 @@
 package getpubcommandline.ui.commands.implementations;
 
+import java.util.List;
+
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
 import getpublication.project.Project;
@@ -21,12 +23,13 @@ public class ChapterChooserCommand implements Command {
             System.out.print(
                     "type a chapter name or number (or _exit_ to exit): ");
             selectedChapter = UserInput.getInput();
+            List<String> chapterNames = project.getAllChapterNames();
 
             if (selectedChapter.equals("_exit_")) {
                 System.out.println("operation canceled");
                 selectedChapter = "";
                 exit = true;
-            } else if (!project.getAllChapterNames()
+            } else if (chapterNames != null && !chapterNames
                     .contains(selectedChapter)) {
                 System.out.println(
                         "chapter not found in database. continue? (type yes or no)");

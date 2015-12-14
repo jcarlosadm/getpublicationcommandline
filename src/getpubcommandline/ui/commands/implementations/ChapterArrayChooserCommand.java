@@ -18,6 +18,9 @@ public class ChapterArrayChooserCommand implements Command {
         }
 
         List<String> chapterNames = context.getProject().getAllChapterNames();
+        if (chapterNames == null) {
+            return;
+        }
 
         System.out.println(
                 "type several chapters separeted by comma (or _exit_ to exit):");

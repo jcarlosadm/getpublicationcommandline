@@ -1,5 +1,7 @@
 package getpubcommandline.ui.commands.implementations;
 
+import java.util.List;
+
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
 import getpublication.util.UserInput;
@@ -13,6 +15,11 @@ public class ChapterRangeChooserCommand implements Command {
         if (context.getProject() == null) {
             return;
         }
+        
+        List<String> chapterNameList = context.getProject().getAllChapterNames();
+        if (chapterNameList == null) {
+            return;
+        }
 
         String selectedChapter1 = "", selectedChapter2 = "";
 
@@ -24,7 +31,7 @@ public class ChapterRangeChooserCommand implements Command {
                 return;
             }
 
-            exit = this.operationTypeChapter(context, selectedChapter1, exit);
+            exit = this.operationTypeChapter(context, selectedChapter1, exit, chapterNameList);
         }
 
         exit = false;
@@ -35,12 +42,12 @@ public class ChapterRangeChooserCommand implements Command {
                 return;
             }
 
-            exit = this.operationTypeChapter(context, selectedChapter2, exit);
+            exit = this.operationTypeChapter(context, selectedChapter2, exit, chapterNameList);
         }
 
-        int index1 = context.getProject().getAllChapterNames()
+        int index1 = chapterNameList
                 .indexOf(selectedChapter1);
-        int index2 = context.getProject().getAllChapterNames()
+        int index2 = chapterNameList
                 .indexOf(selectedChapter2);
 
         if (index1 < index2) {
@@ -50,7 +57,7 @@ public class ChapterRangeChooserCommand implements Command {
         }
 
         for (; index1 >= index2; index1--) {
-            String selectedChapter = context.getProject().getAllChapterNames()
+            String selectedChapter = chapterNameList
                     .get(index1);
             
             int tryCounts = 0;
@@ -72,9 +79,9 @@ public class ChapterRangeChooserCommand implements Command {
     }
 
     private boolean operationTypeChapter(ContextCommand context,
-            String selectedChapter, boolean exit) {
+            String selectedChapter, boolean exit, List<String> chapterNameList) {
 
-        if (!context.getProject().getAllChapterNames()
+        if (!chapterNameList
                 .contains(selectedChapter)) {
             System.out.println("chapter " + selectedChapter
                     + " not found in database. try again.");
