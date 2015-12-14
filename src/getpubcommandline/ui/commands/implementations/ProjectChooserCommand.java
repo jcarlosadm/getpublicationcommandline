@@ -1,5 +1,8 @@
 package getpubcommandline.ui.commands.implementations;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 import getpubcommandline.ui.StringChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
@@ -20,7 +23,10 @@ public class ProjectChooserCommand implements Command {
         
         StringChooser stringChooser = new StringChooser();
         stringChooser.setTitle("select a project:");
-        for (String projectName : jsonPublication.getProjects()) {
+        
+        Set<String> treeset = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+        treeset.addAll(jsonPublication.getProjects());
+        for (String projectName : treeset) {
             stringChooser.addString(projectName);
         }
         String selectedProject = stringChooser.run();
