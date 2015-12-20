@@ -11,6 +11,8 @@ import getpublication.util.UserInput;
 
 public class ChapterArrayChooserCommand implements Command {
 
+    private static final int DOWNLOAD_TENTATIVES = 50;
+
     @Override
     public void action(ContextCommand context) {
         if (context.getProject() == null) {
@@ -58,8 +60,13 @@ public class ChapterArrayChooserCommand implements Command {
         }
 
         for (String selectedChapter : selectedChapters) {
-            context.getProject().downloadChapter(selectedChapter.trim(),
-                    context.getDownloadFolder());
+            boolean success = false;
+            int count = 0;
+            while (!success && count <= DOWNLOAD_TENTATIVES) {
+                success = context.getProject().downloadChapter(selectedChapter.trim(),
+                        context.getDownloadFolder());
+                count++;
+            }
         }
     }
 

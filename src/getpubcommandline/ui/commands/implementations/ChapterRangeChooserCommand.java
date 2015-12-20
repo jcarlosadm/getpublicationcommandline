@@ -8,7 +8,7 @@ import getpublication.util.UserInput;
 
 public class ChapterRangeChooserCommand implements Command {
 
-    private static final int DOWNLOAD_TENTATIVES = 3;
+    private static final int DOWNLOAD_TENTATIVES = 50;
 
     @Override
     public void action(ContextCommand context) {

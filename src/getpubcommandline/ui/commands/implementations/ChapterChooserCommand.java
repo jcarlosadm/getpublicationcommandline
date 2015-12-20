@@ -9,6 +9,8 @@ import getpublication.util.UserInput;
 
 public class ChapterChooserCommand implements Command {
 
+    private static final int DOWNLOAD_TENTATIVES = 50;
+
     @Override
     public void action(ContextCommand context) {
         Project project = context.getProject();
@@ -50,7 +52,12 @@ public class ChapterChooserCommand implements Command {
             return;
         }
 
-        project.downloadChapter(selectedChapter, context.getDownloadFolder());
+        boolean success = false;
+        int count = 0;
+        while (!success && count <= DOWNLOAD_TENTATIVES) {
+            success = project.downloadChapter(selectedChapter, context.getDownloadFolder());
+            count++;
+        }
     }
 
     @Override
