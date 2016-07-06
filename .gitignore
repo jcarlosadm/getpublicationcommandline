@@ -3,3 +3,4 @@
 .project
 /.settings/
 /libs/
+/target/
