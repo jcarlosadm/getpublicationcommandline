@@ -14,19 +14,47 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+		  <artifactId>maven-assembly-plugin</artifactId>
+		  <configuration>
+		    <archive>
+		      <manifest>
+		        <mainClass>getpubcommandline.GetPublicationMain</mainClass>
+		      </manifest>
+		    </archive>
+		    <descriptorRefs>
+		      <descriptorRef>jar-with-dependencies</descriptorRef>
+		    </descriptorRefs>
+		  </configuration>
+		  <executions>
+		    <execution>
+		      <id>make-assembly</id> <!-- this is used for inheritance merges -->
+		      <phase>package</phase> <!-- bind to the packaging phase -->
+		      <goals>
+		        <goal>single</goal>
+		      </goals>
+		    </execution>
+		  </executions>
+		</plugin>
     </plugins>
   </build>
   <dependencies>
   	<dependency>
   		<artifactId>jspf-core</artifactId>
-  		<groupId>jspf-core</groupId>
+  		<groupId>net.xeoh.plugins</groupId>
   		<version>1.0.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>getPublication</groupId>
+  		<artifactId>getPublication</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<scope>compile</scope>
   	</dependency>
   </dependencies>
   <repositories>
   	<repository>
-  		<id>jspf-core-1.0.2.jar</id>
-  		<url>http://maven.formreturn.com/repository/net/xeoh/jspf/jspf-core/1.0.2/jspf-core-1.0.2.jar</url>
+  		<id>jspf-core</id>
+  		<url>http://korpling.german.hu-berlin.de/maven2/</url>
   	</repository>
   </repositories>
 </project>
