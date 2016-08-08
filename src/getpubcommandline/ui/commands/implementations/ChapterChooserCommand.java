@@ -55,7 +55,8 @@ public class ChapterChooserCommand implements Command {
         boolean success = false;
         int count = 0;
         while (!success && count <= DOWNLOAD_TENTATIVES) {
-            success = project.downloadChapter(selectedChapter, context.getDownloadFolder());
+            success = project.downloadChapter(selectedChapter, context.getDownloadFolder(),
+                    context.getJsonPublication().getConvertImagesProperty());
             count++;
         }
     }

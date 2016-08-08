@@ -63,8 +63,10 @@ public class ChapterArrayChooserCommand implements Command {
             boolean success = false;
             int count = 0;
             while (!success && count <= DOWNLOAD_TENTATIVES) {
-                success = context.getProject().downloadChapter(selectedChapter.trim(),
-                        context.getDownloadFolder());
+                success = context.getProject().downloadChapter(
+                        selectedChapter.trim(), context.getDownloadFolder(),
+                        context.getJsonPublication()
+                                .getConvertImagesProperty());
                 count++;
             }
         }

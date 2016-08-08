@@ -12,15 +12,16 @@ public class DownloadUrlCommand implements Command {
     public void action(ContextCommand context) {
         System.out.println("type an url:");
         String urlString = UserInput.getInput();
-        
+
         ProjectBuilder builder = context.getProjectBuilder();
         builder.setName("");
         builder.setUrlPart(urlString);
         builder.setAnonymousMode(context.isAnonymousMode());
-        
+
         Project project = builder.build();
         System.out.println("downloading...");
-        project.downloadChapter("", context.getDownloadFolder());
+        project.downloadChapter("", context.getDownloadFolder(),
+                context.getJsonPublication().getConvertImagesProperty());
     }
 
     @Override
