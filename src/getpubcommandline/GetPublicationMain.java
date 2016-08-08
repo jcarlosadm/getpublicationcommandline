@@ -6,8 +6,10 @@ import java.util.Collection;
 import getpubcommandline.plugin.CommandLineSitePlugin;
 import getpubcommandline.ui.commands.ContextCommand;
 import getpubcommandline.ui.commands.implementations.SiteChooserCommand;
+import getpubcommandline.util.pageProgress.PrintStrategyCommandLine;
 import getpublication.folders.UserFolder;
 import getpublication.util.folder.CreateFolder;
+import getpublication.util.pageProgress.PageProgressPrinter;
 import net.xeoh.plugins.base.PluginManager;
 import net.xeoh.plugins.base.impl.PluginManagerFactory;
 import net.xeoh.plugins.base.util.PluginManagerUtil;
@@ -27,6 +29,11 @@ public class GetPublicationMain {
 
         Collection<CommandLineSitePlugin> plugins = new PluginManagerUtil(
                 pluginManager).getPlugins(CommandLineSitePlugin.class);
+
+        PageProgressPrinter pageProgressPrinter = PageProgressPrinter
+                .getInstance();
+        pageProgressPrinter
+                .setPrintStrategy(PrintStrategyCommandLine.getInstance());
 
         ContextCommand contextCommand = new ContextCommand();
         SiteChooserCommand command = new SiteChooserCommand();
