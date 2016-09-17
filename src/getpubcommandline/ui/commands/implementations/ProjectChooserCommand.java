@@ -6,6 +6,7 @@ import java.util.TreeSet;
 import getpubcommandline.ui.StringChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpubcommandline.util.ConverterImageAlgorithm;
 import getpublication.json.publication.JsonPublication;
 import getpublication.json.publication.PropertiesName;
 import getpublication.project.Project;
@@ -42,6 +43,7 @@ public class ProjectChooserCommand implements Command {
                 PropertiesName.NAME_IN_URL));
         projectBuilder.setAnonymousMode(context.isAnonymousMode());
         Project project = projectBuilder.build();
+        project.setConvertImageAlgorithm(new ConverterImageAlgorithm());
         
         context.setProject(project);
         System.out.println("project "+project.getName()+" selected");

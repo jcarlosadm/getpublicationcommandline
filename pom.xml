@@ -50,6 +50,11 @@
   		<version>0.0.1-SNAPSHOT</version>
   		<scope>compile</scope>
   	</dependency>
+  	<dependency>
+		<groupId>webp-imageio</groupId>
+		<artifactId>webp-imageio</artifactId>
+		<version>0.4.2</version>
+	</dependency>
   </dependencies>
   <repositories>
   	<repository>
