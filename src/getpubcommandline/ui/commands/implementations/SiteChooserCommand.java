@@ -1,12 +1,17 @@
 package getpubcommandline.ui.commands.implementations;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import getpubcommandline.ui.CommandChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpublication.folders.UserFolder;
 import getpublication.json.basicconfig.JsonConfig;
+import getpublication.util.logs.LogFileWriter;
 
 public class SiteChooserCommand implements Command {
 
@@ -18,6 +23,13 @@ public class SiteChooserCommand implements Command {
     
     @Override
     public void action(ContextCommand context) {
+        String timeMark = "";
+        SimpleDateFormat sFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
+        timeMark += sFormat.format(Calendar.getInstance().getTime());
+        
+        File logFile = new File(UserFolder.getPathToLogFolder() + File.separator + timeMark);
+        LogFileWriter logFileWriter = LogFileWriter.getNewLogFile(logFile);
+        
         JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.load();
         context.getDownloadFolder().setPath(jsonConfig.getPathToDownloadFolder());
@@ -44,6 +56,12 @@ public class SiteChooserCommand implements Command {
             if (selectedCommand instanceof ExitCommand) {
                 exit = true;
             }
+        }
+        
+        try {
+            logFileWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

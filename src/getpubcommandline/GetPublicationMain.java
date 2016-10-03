@@ -21,6 +21,9 @@ public class GetPublicationMain {
                     + "commandLine");
 
     public static void main(String[] args) {
+        UserFolder userFolder = new UserFolder();
+        userFolder.createFolders();
+
         CreateFolder.create(PLUGIN_FOLDER);
 
         PluginManager pluginManager = PluginManagerFactory
