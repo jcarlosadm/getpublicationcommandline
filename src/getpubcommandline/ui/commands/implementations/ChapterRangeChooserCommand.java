@@ -16,8 +16,9 @@ public class ChapterRangeChooserCommand implements Command {
             return;
         }
 
-        List<String> chapterNameList = context.getProject()
-                .getAllChapterNames();
+        context.getJsonPublication().load();
+        List<String> chapterNameList = context.getJsonPublication().getChapters(
+                context.getProject().getName());
         if (chapterNameList == null) {
             return;
         }
@@ -51,13 +52,13 @@ public class ChapterRangeChooserCommand implements Command {
         int index1 = chapterNameList.indexOf(selectedChapter1);
         int index2 = chapterNameList.indexOf(selectedChapter2);
 
-        if (index1 < index2) {
+        if (index1 > index2) {
             int temp = index1;
             index1 = index2;
             index2 = temp;
         }
 
-        for (; index1 >= index2; index1--) {
+        for (; index1 <= index2; ++index1) {
             String selectedChapter = chapterNameList.get(index1);
 
             int tryCounts = 0;

@@ -25,7 +25,8 @@ public class ChapterChooserCommand implements Command {
             System.out.print(
                     "type a chapter name or number (or _exit_ to exit): ");
             selectedChapter = UserInput.getInput();
-            List<String> chapterNames = project.getAllChapterNames();
+            context.getJsonPublication().load();
+            List<String> chapterNames = context.getJsonPublication().getChapters(project.getName());
 
             if (selectedChapter.equals("_exit_")) {
                 System.out.println("operation canceled");
@@ -34,13 +35,7 @@ public class ChapterChooserCommand implements Command {
             } else if (chapterNames != null && !chapterNames
                     .contains(selectedChapter)) {
                 System.out.println(
-                        "chapter not found in database. continue? (type yes or no)");
-                String confirm = UserInput.getInput();
-                if (confirm.toLowerCase().equals("yes")) {
-                    System.out.println("you chose try to download chapter "
-                            + selectedChapter);
-                    exit = true;
-                }
+                        "chapter not found in database");
             } else {
                 System.out.println("chapter " + selectedChapter + " selected");
                 exit = true;

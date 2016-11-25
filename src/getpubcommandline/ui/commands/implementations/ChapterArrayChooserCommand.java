@@ -19,7 +19,10 @@ public class ChapterArrayChooserCommand implements Command {
             return;
         }
 
-        List<String> chapterNames = context.getProject().getAllChapterNames();
+        context.getJsonPublication().load();
+
+        List<String> chapterNames = context.getJsonPublication()
+                .getChapters(context.getProject().getName());
         if (chapterNames == null) {
             return;
         }
@@ -35,22 +38,13 @@ public class ChapterArrayChooserCommand implements Command {
 
         List<String> selectedChapters = new ArrayList<>(
                 Arrays.asList(stringUser.split(",")));
-
-        for (Iterator<String> selectedChapterIterator = selectedChapters
-                .iterator(); selectedChapterIterator.hasNext();) {
-            String selectedChapter = ((String) selectedChapterIterator.next())
-                    .trim();
-
+        
+        for (Iterator<String> iterator = selectedChapters.iterator(); iterator
+                .hasNext();) {
+            String selectedChapter = (String) iterator.next();
             if (!chapterNames.contains(selectedChapter)) {
-                System.out.print("chapter " + selectedChapter
-                        + " not found in database. try download?"
-                        + " (type yes or no) ");
-                String userConfirm = UserInput.getInput();
-                if (!userConfirm.toLowerCase().equals("yes")) {
-                    selectedChapterIterator.remove();
-                    System.out
-                            .println("chapter " + selectedChapter + " removed");
-                }
+                System.out.println("chapter "+selectedChapter+" not found in database.");
+                iterator.remove();
             }
         }
 

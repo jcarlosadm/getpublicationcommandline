@@ -26,7 +26,7 @@ public class ProjectChooserCommand implements Command {
         stringChooser.setTitle("select a project:");
         
         Set<String> treeset = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
-        treeset.addAll(jsonPublication.getProjects());
+        treeset.addAll(jsonPublication.getFavProjects());
         for (String projectName : treeset) {
             stringChooser.addString(projectName);
         }
@@ -46,11 +46,12 @@ public class ProjectChooserCommand implements Command {
         project.setConvertImageAlgorithm(new ConverterImageAlgorithm());
         
         context.setProject(project);
+        context.loadLastChapter();
         System.out.println("project "+project.getName()+" selected");
     }
 
     @Override
     public String getCommandName() {
-        return "select project";
+        return "select favorite project";
     }
 }

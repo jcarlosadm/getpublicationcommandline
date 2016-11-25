@@ -1,5 +1,9 @@
 package getpubcommandline.ui.commands.implementations;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import getpubcommandline.ui.StringChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
@@ -14,14 +18,22 @@ public class RemoveProjectCommand implements Command {
 
         StringChooser stringChooser = new StringChooser();
         stringChooser.setTitle("type a number of one project:");
-        for (String projectName : jsonPublication.getProjects()) {
+        List<String> projects = new ArrayList<>(jsonPublication.getProjects());
+        Collections.sort(projects);
+        
+        for (String projectName : projects) {
             stringChooser.addString(projectName);
         }
 
         String selectedProject = stringChooser.run();
         if (selectedProject != null && !selectedProject.equals("")) {
+            List<String> favProjects = jsonPublication.getFavProjects();
+            if (favProjects.contains(selectedProject)) {
+                jsonPublication.removeFavProject(selectedProject);
+            }
+            
             jsonPublication.removeProject(selectedProject);
-
+            
             jsonPublication.save();
             if (context.getProject() != null
                     && context.getProject().getName().equals(selectedProject)) {
