@@ -9,40 +9,25 @@ import getpubcommandline.ui.commands.ContextCommand;
 import getpubcommandline.util.ShowImageWindow;
 import getpublication.folders.UserFolder;
 import getpublication.parser.HtmlNewsObjectInfo;
-import getpublication.parser.HtmlSearchParser;
-import getpublication.util.UserInput;
 import getpublication.util.downloader.Downloader;
 
-public class SearchCommand implements Command {
+public class ShowNews implements Command {
 
     @Override
     public void action(ContextCommand context) {
-        HtmlSearchParser htmlSearchParser = context.getHtmlSearchParser();
-        if (htmlSearchParser == null) {
-            System.out.println("fail to search");
-            return;
-        }
-
-        System.out.print("type a search term: ");
-        String searchTerm = UserInput.getInput();
-
-        Map<String, HtmlNewsObjectInfo> searchResult = htmlSearchParser
-                .getSearchResult(searchTerm);
-        if (searchResult == null) {
-            System.out.println("fail to search");
+        Map<String, HtmlNewsObjectInfo> map = context.getHtmlNewsParser()
+                .getNewsListByProject();
+        if (map == null || map.isEmpty()) {
+            System.out.println("error to get news");
             return;
         }
 
         Map<String, String> imageMap = new HashMap<>();
 
-        for (String key : searchResult.keySet()) {
-            String imageName = searchResult.get(key).getUrlImage();
-            if (imageName == null || imageName.isEmpty()) {
-                continue;
-            }
-
+        for (String key : map.keySet()) {
+            String imageName = map.get(key).getUrlImage();
             imageName = imageName.substring(imageName.lastIndexOf("/") + 1);
-            imageMap.put(imageName, searchResult.get(key).getUrlImage());
+            imageMap.put(imageName, map.get(key).getUrlImage());
         }
 
         Map<String, String> imageLocations = new HashMap<>();
@@ -56,7 +41,7 @@ public class SearchCommand implements Command {
 
         this.downloadImages(imageMap, imageLocations, folder);
 
-        this.showWindowWithImages(searchResult, imageLocations);
+        this.showWindowWithImages(map, imageLocations);
     }
 
     private void showWindowWithImages(Map<String, HtmlNewsObjectInfo> map,
@@ -69,10 +54,10 @@ public class SearchCommand implements Command {
 
             sWindow.addContent(map.get(key).getProjectName(),
                     map.get(key).getUrlProject(), imageLocations.get(imageName),
-                    null, map.get(key).getDescription());
+                    map.get(key).getChapters(), null);
         }
 
-        sWindow.showHtml("Search");
+        sWindow.showHtml("News");
 
     }
 
@@ -101,7 +86,7 @@ public class SearchCommand implements Command {
 
     @Override
     public String getCommandName() {
-        return "search";
+        return "show news";
     }
 
 }

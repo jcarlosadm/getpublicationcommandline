@@ -29,6 +29,9 @@ public class UpdateFavProjects implements Command {
         HtmlNewsParser htmlNewsParser = context.getHtmlNewsParser();
         Map<String, HtmlNewsObjectInfo> newsResult = htmlNewsParser
                 .getNewsListByProject();
+        if (newsResult == null || newsResult.isEmpty()) {
+            return;
+        }
 
         for (String projectName : favProjects) {
             Project project = this.buildProject(projectName, context);

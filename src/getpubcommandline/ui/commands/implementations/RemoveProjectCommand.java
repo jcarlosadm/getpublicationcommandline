@@ -7,6 +7,7 @@ import java.util.List;
 import getpubcommandline.ui.StringChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpubcommandline.util.ColorTerminal;
 import getpublication.json.publication.JsonPublication;
 
 public class RemoveProjectCommand implements Command {
@@ -47,7 +48,8 @@ public class RemoveProjectCommand implements Command {
 
     @Override
     public String getCommandName() {
-        return "remove project";
+        ColorTerminal c = new ColorTerminal();
+        return c.getRed()+"remove project"+c.getReset();
     }
 
 }

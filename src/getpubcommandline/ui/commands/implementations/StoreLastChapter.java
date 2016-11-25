@@ -60,7 +60,7 @@ public class StoreLastChapter implements Command {
         ColorTerminal c = new ColorTerminal();
 
         return "Store Last Chapter" + (this.lastChapter.isEmpty() ? ""
-                : " (last: " + c.getRed() + this.lastChapter + c.getReset()
+                : " (last: " + c.getBlue() + this.lastChapter + c.getReset()
                         + ")");
     }
 

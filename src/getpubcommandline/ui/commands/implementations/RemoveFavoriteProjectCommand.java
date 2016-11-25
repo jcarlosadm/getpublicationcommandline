@@ -6,6 +6,7 @@ import java.util.List;
 import getpubcommandline.ui.StringChooser;
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpubcommandline.util.ColorTerminal;
 
 public class RemoveFavoriteProjectCommand implements Command {
 
@@ -38,7 +39,8 @@ public class RemoveFavoriteProjectCommand implements Command {
 
     @Override
     public String getCommandName() {
-        return "remove favorite project";
+        ColorTerminal c = new ColorTerminal();
+        return c.getRed()+"remove favorite project"+c.getReset();
     }
 
 }
