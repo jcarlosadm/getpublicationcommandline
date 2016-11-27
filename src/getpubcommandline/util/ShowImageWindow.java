@@ -44,7 +44,7 @@ public class ShowImageWindow {
     public void showHtml(String title) {
         Collections.sort(contents, new ContentComparator());
 
-        File file = new File(UserFolder.getPathToTempFolder() + File.separator
+        File file = new File(UserFolder.getPathToMainFolder() + File.separator
                 + title.replace(" ", "").trim() + ".html");
         if (file.exists()) {
             file.delete();
