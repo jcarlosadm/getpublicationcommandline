@@ -4,6 +4,7 @@ import java.util.List;
 
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpubcommandline.util.UpdateLastChapter;
 import getpublication.project.Project;
 import getpublication.util.UserInput;
 
@@ -53,6 +54,11 @@ public class ChapterChooserCommand implements Command {
             success = project.downloadChapter(selectedChapter, context.getDownloadFolder(),
                     context.getJsonPublication().getConvertImagesProperty());
             count++;
+            System.out.println("trying again ("+count+"/"+DOWNLOAD_TENTATIVES+")");
+        }
+        
+        if (success) {
+            UpdateLastChapter.update(context, selectedChapter);
         }
     }
 

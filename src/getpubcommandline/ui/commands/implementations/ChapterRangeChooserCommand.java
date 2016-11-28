@@ -4,6 +4,7 @@ import java.util.List;
 
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpubcommandline.util.UpdateLastChapter;
 import getpublication.util.UserInput;
 
 public class ChapterRangeChooserCommand implements Command {
@@ -70,6 +71,10 @@ public class ChapterRangeChooserCommand implements Command {
                     break;
                 }
                 tryCounts++;
+            }
+            
+            if (tryCounts < DOWNLOAD_TENTATIVES) {
+                UpdateLastChapter.update(context, selectedChapter);
             }
         }
     }

@@ -7,6 +7,7 @@ import java.util.List;
 
 import getpubcommandline.ui.commands.Command;
 import getpubcommandline.ui.commands.ContextCommand;
+import getpubcommandline.util.UpdateLastChapter;
 import getpublication.util.UserInput;
 
 public class ChapterArrayChooserCommand implements Command {
@@ -62,6 +63,10 @@ public class ChapterArrayChooserCommand implements Command {
                         context.getJsonPublication()
                                 .getConvertImagesProperty());
                 count++;
+            }
+            
+            if (success) {
+                UpdateLastChapter.update(context, selectedChapter.trim());
             }
         }
     }
