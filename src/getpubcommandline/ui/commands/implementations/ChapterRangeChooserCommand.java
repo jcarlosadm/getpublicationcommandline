@@ -71,6 +71,7 @@ public class ChapterRangeChooserCommand implements Command {
                     break;
                 }
                 tryCounts++;
+                System.out.println("trying again ("+tryCounts+"/"+DOWNLOAD_TENTATIVES+")");
             }
             
             if (tryCounts < DOWNLOAD_TENTATIVES) {

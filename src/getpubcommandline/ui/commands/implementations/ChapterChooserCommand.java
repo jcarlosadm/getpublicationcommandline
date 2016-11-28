@@ -54,7 +54,8 @@ public class ChapterChooserCommand implements Command {
             success = project.downloadChapter(selectedChapter, context.getDownloadFolder(),
                     context.getJsonPublication().getConvertImagesProperty());
             count++;
-            System.out.println("trying again ("+count+"/"+DOWNLOAD_TENTATIVES+")");
+            if (!success)
+                System.out.println("trying again ("+count+"/"+DOWNLOAD_TENTATIVES+")");
         }
         
         if (success) {

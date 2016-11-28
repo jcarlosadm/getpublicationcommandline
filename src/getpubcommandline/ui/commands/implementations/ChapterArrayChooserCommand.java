@@ -63,6 +63,8 @@ public class ChapterArrayChooserCommand implements Command {
                         context.getJsonPublication()
                                 .getConvertImagesProperty());
                 count++;
+                if (!success)
+                    System.out.println("trying again ("+count+"/"+DOWNLOAD_TENTATIVES+")");
             }
             
             if (success) {

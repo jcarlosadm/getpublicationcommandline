@@ -35,6 +35,7 @@ public final class UpdateLastChapter {
             context.getJsonPublication().setLastChapter(
                     context.getProject().getName(), lastChapter);
             context.getJsonPublication().save();
+            context.loadLastChapter();
         }
 
         return true;
