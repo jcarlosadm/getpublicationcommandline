@@ -34,13 +34,16 @@ public class UpdateFavProjects implements Command {
         }
 
         for (String projectName : favProjects) {
+            System.out.println("Updating "+projectName+"...");
             Project project = this.buildProject(projectName, context);
             if (project == null) {
+                System.out.println("   failed to get project");
                 continue;
             }
 
             List<String> chapterNames = project.getAllChapterNames();
             if (chapterNames == null) {
+                System.out.println("   failed to get chapters");
                 continue;
             }
 
