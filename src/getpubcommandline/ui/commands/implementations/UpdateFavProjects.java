@@ -15,7 +15,9 @@ import getpublication.project.ProjectBuilder;
 
 public class UpdateFavProjects implements Command {
 
-    @Override
+    private static final int TENTATIVES = 10;
+
+	@Override
     public void action(ContextCommand context) {
         JsonPublication jsonPublication = context.getJsonPublication();
         jsonPublication.load();
@@ -36,12 +38,25 @@ public class UpdateFavProjects implements Command {
         for (String projectName : favProjects) {
             System.out.println("Updating "+projectName+"...");
             Project project = this.buildProject(projectName, context);
+            int count = 0;
+            while (project == null && count <= TENTATIVES) {
+            	project = this.buildProject(projectName, context);
+            	count++;
+            }
+            
             if (project == null) {
                 System.out.println("   failed to get project");
                 continue;
             }
 
             List<String> chapterNames = project.getAllChapterNames();
+            
+            count = 0;
+            while(chapterNames == null && count <= TENTATIVES) {
+            	chapterNames = project.getAllChapterNames();
+            	count++;
+            }
+            
             if (chapterNames == null) {
                 System.out.println("   failed to get chapters");
                 continue;
